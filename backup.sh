@@ -27,7 +27,7 @@ create_backup () {
     local src_dir=$1;
     local tgt_dir=$2;
     local backup_name=$3;
-    tar -zvcf $src_dir/$backup_name $src_dir;
+    tar -zcf $src_dir/$backup_name $src_dir;
 }
 
 move_backup() {
