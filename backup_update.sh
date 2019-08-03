@@ -12,8 +12,6 @@ main() {
     echo "[INFO] Initialized TARGET = '$tar_dir/$tar_name' ; SOURCE = '$src_dir'";
     update_tar $tar_dir $tar_name $src_dir;
     echo "[SUCCESS] Backup Updated";
-    rename_tar $tar_dir $tar_name $new_tar_name;
-    echo "[SUCCESS] Completed: Renamed '$tar_name' ---> '$new_tar_name'";
 }
 
 if [ $# -eq 3 ]; then
