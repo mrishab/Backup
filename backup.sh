@@ -1,7 +1,7 @@
 #!/bin/bash
 #Purpose = Backup of Important Data
 
-BACKUP_NAME=Backup
+source ./utils.sh
 
 main() {
     local src_dir=$1;
@@ -23,41 +23,13 @@ main() {
     echo "[SUCCESS] Backup Complete"
 }
 
-create_backup () {
-    local src_dir=$1;
-    local tgt_dir=$2;
-    local backup_name=$3;
-    tar -zcf $src_dir/$backup_name $src_dir;
-}
-
-move_backup() {
-    local backup_loc=$1/$3;
-    local tgt_dir=$2;
-    mv $backup_loc $tgt_dir;
-}
-
-delete_previous_backups() {
-    local bkp_tgt_dir=$1;
-    local backup_files_regex=$BACKUP_NAME-*.tgz;
-    rm $bkp_tgt_dir/$backup_files_regex;   
-}
-
-generate_backup_name() {
-    local filename=$BACKUP_NAME-$(_generate_datestamp).tgz;
-    echo $filename;
-}
-
-_generate_datestamp() {
-    echo $(date +"%d-%b-%Y");
-}
-
 
 if [ $# -eq 3 ]; then
     BACKUP_NAME=$3-$BACKUP_NAME;
 fi
 
 if [ $# -eq 2 -o $# -eq 3 ]; then
-    main $@    
+    main $@
 else
     echo "Two arguments: Source Directory and Target Directory are expected.";
     echo "Pass these are arguments";
