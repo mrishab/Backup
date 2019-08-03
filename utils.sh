@@ -32,3 +32,20 @@ delete_previous_backups() {
     local backup_files_regex=$BACKUP_NAME-*.tgz;
     rm $bkp_tgt_dir/$backup_files_regex;   
 }
+
+# TAR Update functions
+update_tar() {
+    local tar_dir=$1;
+    local tar_name=$2;
+    local src_dir=$3;
+
+    tar --exclude=$tar_dir/$tar_name -uf $tar_dir/$tar_name $src_dir;
+}
+
+rename_tar() {
+    local tar_dir=$1;
+    local tar_name=$2;
+    local new_name=$3;
+
+    mv $tar_dir/$tar_name $tar_dir/$new_name;
+}
